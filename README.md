@@ -22,7 +22,7 @@ This R package assists breeders in linking data systems with their analytic pipe
 >
 >___Contributor:__ [Johan Aparicio](https://github.com/apariciojohan) <j.aparicio (at) cgiar (dot) org>_
 >
->___Copyright Holder:__ [International Center for Agricultural Research in the Dry Areas (ICARDA)](https://www.icarda.org/)_
+>___Copyright Holder:__ [International Center for Agricultural Research in the Dry Areas (ICARDA)](https://icarda.org/)_
 
 ## BrAPI
 The Breeding API ([BrAPI](https://brapi.org/)) project is an effort to enable interoperability among plant breeding databases. BrAPI is a standardized RESTful web service API specification for communicating plant breeding data. This community driven standard is free to be used by anyone interested in plant breeding data management.
@@ -105,7 +105,7 @@ set_qbms_connection(con1)
 
 > A detailed example is available in the documentation of the `get_qbms_connection()` and `set_qbms_connection()` functions.
 
-Also, you can find a more elegant solution developed by [Francisco Agosto-Perez](https://ilci.cornell.edu/our-team/francisco-agosto-perez/) from the Breeding Informatics team within the Innovation Lab For Crop Improvement at Cornell University available here: 
+Also, you can find a more elegant solution developed by [Francisco Agosto-Perez](https://cals.cornell.edu/people/francisco-agosto-perez) from the Breeding Informatics team within the Innovation Lab For Crop Improvement at Cornell University available here: 
 [https://github.com/agostof/BrAPI-Provider/](https://github.com/agostof/BrAPI-Provider/)
 
 ## Error and Debugging

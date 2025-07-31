@@ -1000,7 +1000,7 @@ get_variantset <- function() {
         variantset <- as.data.frame(variantset)
         
       } else {
-        variantset <- t(read.delim(text = content, row.names = 1, check.names = FALSE, stringsAsFactors = FALSE, colClasses = "character"))
+        variantset <- t(utils::read.delim(text = content, row.names = 1, check.names = FALSE, stringsAsFactors = FALSE, colClasses = "character"))
         variantset[variantset == ""] <- NA
       }
       

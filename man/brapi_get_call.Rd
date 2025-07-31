@@ -10,6 +10,8 @@ brapi_get_call(call_url, nested = TRUE, caller_func = NA)
 \item{call_url}{Character string specifying the base URL of the API endpoint to request.}
 
 \item{nested}{Logical value indicating whether to flatten nested lists in the JSON responses. Defaults to \code{TRUE}.}
+
+\item{caller_func}{Character string identifying the name of the function that invoked \code{brapi_get_call()}.}
 }
 \value{
 A list containing the consolidated data and associated metadata from the API response.

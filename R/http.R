@@ -116,6 +116,7 @@ get_async_pages <- function(pages, nested) {
 #'
 #' @param call_url Character string specifying the base URL of the API endpoint to request.
 #' @param nested Logical value indicating whether to flatten nested lists in the JSON responses. Defaults to \code{TRUE}.
+#' @param caller_func Character string identifying the name of the function that invoked \code{brapi_get_call()}.
 #'
 #' @return A list containing the consolidated data and associated metadata from the API response.
 #'
