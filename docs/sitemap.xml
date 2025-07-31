@@ -1,234 +1,89 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/articles/bms_example.html</loc>
-  </url>
-  <url>
-    <loc>/articles/breedbase_example.html</loc>
-  </url>
-  <url>
-    <loc>/articles/ebs_example.html</loc>
-  </url>
-  <url>
-    <loc>/articles/gigwa_example.html</loc>
-  </url>
-  <url>
-    <loc>/articles/hwsd2_example.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/terraclimate_example.html</loc>
-  </url>
-  <url>
-    <loc>/articles/tutorial.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/brapi_get_call.html</loc>
-  </url>
-  <url>
-    <loc>/reference/brapi_headers.html</loc>
-  </url>
-  <url>
-    <loc>/reference/brapi_map.html</loc>
-  </url>
-  <url>
-    <loc>/reference/brapi_post_search_allelematrix.html</loc>
-  </url>
-  <url>
-    <loc>/reference/brapi_post_search_call.html</loc>
-  </url>
-  <url>
-    <loc>/reference/build_pedigree_table.html</loc>
-  </url>
-  <url>
-    <loc>/reference/calc_biovars.html</loc>
-  </url>
-  <url>
-    <loc>/reference/debug_qbms.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_async_page.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_async_pages.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_brapi_url.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_crop_locations.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_germplasm_attributes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_germplasm_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_germplasm_id.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_germplasm_list.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_hwsd2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_login_details.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_parents.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_pedigree_table.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_program_studies.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_program_trials.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_qbms_connection.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_study_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_study_info.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_terraclimate.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_trial_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_trial_obs_ontology.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gigwa_get_allelematrix.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gigwa_get_markers.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gigwa_get_metadata.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gigwa_get_samples.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gigwa_get_sequences.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gigwa_get_variants.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gigwa_list_dbs.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gigwa_list_projects.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gigwa_list_runs.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gigwa_set_db.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gigwa_set_project.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gigwa_set_run.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ini_hwsd2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ini_terraclimate.html</loc>
-  </url>
-  <url>
-    <loc>/reference/list_crops.html</loc>
-  </url>
-  <url>
-    <loc>/reference/list_locations.html</loc>
-  </url>
-  <url>
-    <loc>/reference/list_programs.html</loc>
-  </url>
-  <url>
-    <loc>/reference/list_studies.html</loc>
-  </url>
-  <url>
-    <loc>/reference/list_trials.html</loc>
-  </url>
-  <url>
-    <loc>/reference/login_bms.html</loc>
-  </url>
-  <url>
-    <loc>/reference/login_breedbase.html</loc>
-  </url>
-  <url>
-    <loc>/reference/login_gigwa.html</loc>
-  </url>
-  <url>
-    <loc>/reference/login_oauth2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/qbms_globals.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rbindlistx.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rbindx.html</loc>
-  </url>
-  <url>
-    <loc>/reference/scan_brapi_endpoints.html</loc>
-  </url>
-  <url>
-    <loc>/reference/set_crop.html</loc>
-  </url>
-  <url>
-    <loc>/reference/set_program.html</loc>
-  </url>
-  <url>
-    <loc>/reference/set_qbms_config.html</loc>
-  </url>
-  <url>
-    <loc>/reference/set_qbms_connection.html</loc>
-  </url>
-  <url>
-    <loc>/reference/set_study.html</loc>
-  </url>
-  <url>
-    <loc>/reference/set_token.html</loc>
-  </url>
-  <url>
-    <loc>/reference/set_trial.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/articles/bms_example.html</loc></url>
+<url><loc>/articles/breedbase_example.html</loc></url>
+<url><loc>/articles/ebs_example.html</loc></url>
+<url><loc>/articles/germinate_example.html</loc></url>
+<url><loc>/articles/gigwa_example.html</loc></url>
+<url><loc>/articles/hwsd2_example.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/terraclimate_example.html</loc></url>
+<url><loc>/articles/tutorial.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/brapi_get_call.html</loc></url>
+<url><loc>/reference/brapi_headers.html</loc></url>
+<url><loc>/reference/brapi_map.html</loc></url>
+<url><loc>/reference/brapi_post_search_allelematrix.html</loc></url>
+<url><loc>/reference/brapi_post_search_call.html</loc></url>
+<url><loc>/reference/build_pedigree_table.html</loc></url>
+<url><loc>/reference/calc_biovars.html</loc></url>
+<url><loc>/reference/debug_qbms.html</loc></url>
+<url><loc>/reference/get_async_page.html</loc></url>
+<url><loc>/reference/get_async_pages.html</loc></url>
+<url><loc>/reference/get_brapi_url.html</loc></url>
+<url><loc>/reference/get_crop_locations.html</loc></url>
+<url><loc>/reference/get_germplasm_attributes.html</loc></url>
+<url><loc>/reference/get_germplasm_data.html</loc></url>
+<url><loc>/reference/get_germplasm_id.html</loc></url>
+<url><loc>/reference/get_germplasm_list.html</loc></url>
+<url><loc>/reference/get_hwsd2.html</loc></url>
+<url><loc>/reference/get_login_details.html</loc></url>
+<url><loc>/reference/get_marker_map.html</loc></url>
+<url><loc>/reference/get_parents.html</loc></url>
+<url><loc>/reference/get_pedigree_table.html</loc></url>
+<url><loc>/reference/get_program_studies.html</loc></url>
+<url><loc>/reference/get_program_trials.html</loc></url>
+<url><loc>/reference/get_qbms_connection.html</loc></url>
+<url><loc>/reference/get_study_data.html</loc></url>
+<url><loc>/reference/get_study_info.html</loc></url>
+<url><loc>/reference/get_terraclimate.html</loc></url>
+<url><loc>/reference/get_trial_data.html</loc></url>
+<url><loc>/reference/get_trial_obs_ontology.html</loc></url>
+<url><loc>/reference/get_trial_pedigree.html</loc></url>
+<url><loc>/reference/get_variants.html</loc></url>
+<url><loc>/reference/get_variantset.html</loc></url>
+<url><loc>/reference/gigwa_get_allelematrix.html</loc></url>
+<url><loc>/reference/gigwa_get_markers.html</loc></url>
+<url><loc>/reference/gigwa_get_metadata.html</loc></url>
+<url><loc>/reference/gigwa_get_samples.html</loc></url>
+<url><loc>/reference/gigwa_get_sequences.html</loc></url>
+<url><loc>/reference/gigwa_get_variants.html</loc></url>
+<url><loc>/reference/gigwa_list_dbs.html</loc></url>
+<url><loc>/reference/gigwa_list_projects.html</loc></url>
+<url><loc>/reference/gigwa_list_runs.html</loc></url>
+<url><loc>/reference/gigwa_set_db.html</loc></url>
+<url><loc>/reference/gigwa_set_project.html</loc></url>
+<url><loc>/reference/gigwa_set_run.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/ini_hwsd2.html</loc></url>
+<url><loc>/reference/ini_terraclimate.html</loc></url>
+<url><loc>/reference/list_crops.html</loc></url>
+<url><loc>/reference/list_locations.html</loc></url>
+<url><loc>/reference/list_programs.html</loc></url>
+<url><loc>/reference/list_studies.html</loc></url>
+<url><loc>/reference/list_trials.html</loc></url>
+<url><loc>/reference/list_variantsets.html</loc></url>
+<url><loc>/reference/login.html</loc></url>
+<url><loc>/reference/login_bms.html</loc></url>
+<url><loc>/reference/login_breedbase.html</loc></url>
+<url><loc>/reference/login_germinate.html</loc></url>
+<url><loc>/reference/login_gigwa.html</loc></url>
+<url><loc>/reference/login_oauth2.html</loc></url>
+<url><loc>/reference/qbms_globals.html</loc></url>
+<url><loc>/reference/rbindlistx.html</loc></url>
+<url><loc>/reference/rbindx.html</loc></url>
+<url><loc>/reference/scan_brapi_endpoints.html</loc></url>
+<url><loc>/reference/set_crop.html</loc></url>
+<url><loc>/reference/set_program.html</loc></url>
+<url><loc>/reference/set_qbms_config.html</loc></url>
+<url><loc>/reference/set_qbms_connection.html</loc></url>
+<url><loc>/reference/set_study.html</loc></url>
+<url><loc>/reference/set_token.html</loc></url>
+<url><loc>/reference/set_trial.html</loc></url>
+<url><loc>/reference/set_variantset.html</loc></url>
 </urlset>
+

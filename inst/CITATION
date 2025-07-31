@@ -1,0 +1,17 @@
+citHeader("To cite the QBMS package, please use the following reference:")
+
+bibentry(
+  bibtype = "Manual",
+  title = "QBMS: Query the Breeding Management System(s)",
+  author = c(
+    person(given = "Khaled", family = "Al-Shamaa", role = c("aut", "cre"), email = "k.el-shamaa@cgiar.org"),
+    person(given = "Mariano Omar", family = "Crimi", role = "ctb"),
+    person(given = "Zakaria", family = "Kehel", role = "ctb"),
+    person(given = "Johan", family = "Aparicio", role = "ctb"),
+    person("ICARDA", role = "cph", comment = "organization")
+  ),
+  year = 2025,
+  note = "R package version 2.0.0",
+  url = "https://CRAN.R-project.org/package=QBMS",
+  doi = "10.32614/CRAN.package.QBMS"
+)

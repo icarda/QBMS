@@ -1,12 +1,12 @@
-pandoc: 3.1.11
-pkgdown: 2.0.7
+pandoc: '3.4'
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   bms_example: bms_example.html
   breedbase_example: breedbase_example.html
   ebs_example: ebs_example.html
+  germinate_example: germinate_example.html
   gigwa_example: gigwa_example.html
   hwsd2_example: hwsd2_example.html
   terraclimate_example: terraclimate_example.html
-last_built: 2024-09-19T05:21Z
-
+last_built: 2025-07-31T15:12Z

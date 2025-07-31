@@ -5,14 +5,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="This R package assists breeders in linking data systems with their analytic pipelines, 
-    a crucial step in digitizing breeding processes. It supports querying and retrieving 
-    phenotypic and genotypic data from systems like EBS &lt;https://ebs.excellenceinbreeding.org/&gt;, 
-    BMS &lt;https://bmspro.io&gt;, BreedBase &lt;https://breedbase.org&gt;, and 
-    GIGWA &lt;https://github.com/SouthGreenPlatform/Gigwa2&gt; (using BrAPI &lt;https://brapi.org&gt; calls). 
-    Extra helper functions support environmental data sources, including 
-    TerraClimate &lt;https://www.climatologylab.org/terraclimate.html&gt; and FAO 
-    HWSDv2 &lt;https://gaez.fao.org/pages/hwsd&gt; soil database. ">
 <title>Query the Breeding Management System(s) • QBMS</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -22,73 +14,54 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Query the Breeding Management System(s)">
-<meta property="og:description" content="This R package assists breeders in linking data systems with their analytic pipelines, 
-    a crucial step in digitizing breeding processes. It supports querying and retrieving 
-    phenotypic and genotypic data from systems like EBS &lt;https://ebs.excellenceinbreeding.org/&gt;, 
-    BMS &lt;https://bmspro.io&gt;, BreedBase &lt;https://breedbase.org&gt;, and 
-    GIGWA &lt;https://github.com/SouthGreenPlatform/Gigwa2&gt; (using BrAPI &lt;https://brapi.org&gt; calls). 
-    Extra helper functions support environmental data sources, including 
-    TerraClimate &lt;https://www.climatologylab.org/terraclimate.html&gt; and FAO 
-    HWSDv2 &lt;https://gaez.fao.org/pages/hwsd&gt; soil database. ">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Query the Breeding Management System(s)">
+<meta name="description" content="This R package assists breeders in linking data systems with their analytic pipelines, a crucial step in digitizing breeding processes. It supports querying and retrieving phenotypic and genotypic data from systems like EBS &lt;https://ebs.excellenceinbreeding.org/&gt;, BMS &lt;https://bmspro.io&gt;, BreedBase &lt;https://breedbase.org&gt;, GIGWA &lt;https://github.com/SouthGreenPlatform/Gigwa2&gt; (using BrAPI &lt;https://brapi.org&gt; calls), , and Germinate &lt;https://germinateplatform.github.io/get-germinate/&gt;. Extra helper functions support environmental data sources, including TerraClimate &lt;https://www.climatologylab.org/terraclimate.html&gt; and FAO HWSDv2 &lt;https://gaez.fao.org/pages/hwsd&gt; soil database.">
+<meta property="og:description" content="This R package assists breeders in linking data systems with their analytic pipelines, a crucial step in digitizing breeding processes. It supports querying and retrieving phenotypic and genotypic data from systems like EBS &lt;https://ebs.excellenceinbreeding.org/&gt;, BMS &lt;https://bmspro.io&gt;, BreedBase &lt;https://breedbase.org&gt;, GIGWA &lt;https://github.com/SouthGreenPlatform/Gigwa2&gt; (using BrAPI &lt;https://brapi.org&gt; calls), , and Germinate &lt;https://germinateplatform.github.io/get-germinate/&gt;. Extra helper functions support environmental data sources, including TerraClimate &lt;https://www.climatologylab.org/terraclimate.html&gt; and FAO HWSDv2 &lt;https://gaez.fao.org/pages/hwsd&gt; soil database.">
 <meta property="og:image" content="/logo.png">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="index.html">QBMS</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.1</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/bms_example.html">BMS Example</a>
-    <a class="dropdown-item" href="articles/breedbase_example.html">BreedBase Example</a>
-    <a class="dropdown-item" href="articles/ebs_example.html">EBS Example</a>
-    <a class="dropdown-item" href="articles/gigwa_example.html">GIGWA Example</a>
-    <a class="dropdown-item" href="articles/hwsd2_example.html">FAO HWSD v2 Example</a>
-    <a class="dropdown-item" href="articles/terraclimate_example.html">TerraClimate Example</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="articles/bms_example.html">BMS Example</a></li>
+    <li><a class="dropdown-item" href="articles/breedbase_example.html">BreedBase Example</a></li>
+    <li><a class="dropdown-item" href="articles/ebs_example.html">EBS Example</a></li>
+    <li><a class="dropdown-item" href="articles/germinate_example.html">Germinate Example</a></li>
+    <li><a class="dropdown-item" href="articles/gigwa_example.html">GIGWA Example</a></li>
+    <li><a class="dropdown-item" href="articles/hwsd2_example.html">FAO HWSD v2 Example</a></li>
+    <li><a class="dropdown-item" href="articles/terraclimate_example.html">TerraClimate Example</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/icarda/QBMS/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/icarda/QBMS/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-home">
 <div class="row">
@@ -97,11 +70,12 @@
 <img src="logo.png" class="logo" alt=""><h1 id="qbms-">QBMS <a class="anchor" aria-label="anchor" href="#qbms-"></a>
 </h1>
 </div>
+<!-- badges: start -->
 
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>This R package assists breeders in linking data systems with their analytic pipelines, a crucial step in digitizing breeding processes. It supports querying and retrieving phenotypic and genotypic data from systems like <a href="https://ebs.excellenceinbreeding.org/" class="external-link">EBS</a>, <a href="https://bmspro.io/" class="external-link">BMS</a>, <a href="https://breedbase.org" class="external-link">BreedBase</a>, and <a href="https://github.com/SouthGreenPlatform/Gigwa2" class="external-link">GIGWA</a> (using <a href="https://brapi.org/" class="external-link">BrAPI</a> calls). Extra helper functions support environmental data sources, including <a href="https://www.climatologylab.org/terraclimate.html" class="external-link">TerraClimate</a> and FAO <a href="https://gaez.fao.org/pages/hwsd" class="external-link">HWSDv2</a> soil database.</p>
+<p>This R package assists breeders in linking data systems with their analytic pipelines, a crucial step in digitizing breeding processes. It supports querying and retrieving phenotypic and genotypic data from systems like <a href="https://ebs.excellenceinbreeding.org/" class="external-link">EBS</a>, <a href="https://bmspro.io/" class="external-link">BMS</a>, <a href="https://breedbase.org" class="external-link">BreedBase</a>, <a href="https://github.com/SouthGreenPlatform/Gigwa2" class="external-link">GIGWA</a>, and <a href="https://germinateplatform.github.io/get-germinate/" class="external-link">Germinate</a> (using <a href="https://brapi.org/" class="external-link">BrAPI</a> calls). Extra helper functions support environmental data sources, including <a href="https://www.climatologylab.org/terraclimate.html" class="external-link">TerraClimate</a> and FAO <a href="https://gaez.fao.org/pages/hwsd" class="external-link">HWSDv2</a> soil database.</p>
 
 <!---------------------------------------------------------------------------->
 <script>
@@ -172,17 +146,18 @@
 <center>
 	<div style="background-color: papayawhip">
 		QBMS Query & Retrive Data from 
-		<strong style="color: maroon" class="typewrite" data-period="2000" data-type='[ "EBS", "BMS", "BreedBase", "GIGWA" ]'>
+		<strong style="color: maroon" class="typewrite" data-period="2000" data-type='[ "EBS", "BMS", "BreedBase", "GIGWA", "Germinate", "Mr. Bean App", "Bioflow Pipeline" ]'>
 			<span class="wrap"></span>
 		</strong>
 		using BrAPI Calls.
 	</div>
 	
 	<div class="owl-carousel owl-theme">
-		<div class="item"><img src="carousel/bms.png" width="800" height="400"></div>
 		<div class="item"><img src="carousel/ebs.png" width="800" height="400"></div>
+		<div class="item"><img src="carousel/bms.png" width="800" height="400"></div>
 		<div class="item"><img src="carousel/breedbase.png" width="800" height="400"></div>
 		<div class="item"><img src="carousel/gigwa.png" width="800" height="400"></div>
+		<div class="item"><img src="carousel/germinate.png" width="800" height="400"></div>
 		<div class="item"><img src="carousel/mrbean.png" width="800" height="400"></div>
 		<div class="item"><img src="carousel/bioflow.png" width="800" height="400"></div>
 	</div>
@@ -203,13 +178,12 @@
 </script>
 <!---------------------------------------------------------------------------->
 
-
 <blockquote>
 <p><em><strong>Author and Maintainer:</strong> <a href="https://github.com/khaled-alshamaa" class="external-link">Khaled Al-Shamaa</a> &lt;k.el-shamaa (at) cgiar (dot) org&gt;</em></p>
 <p><em><strong>Contributor:</strong> <a href="https://github.com/mcrimi" class="external-link">Mariano Omar CRIMI</a> &lt;m.crimi (at) cgiar (dot) org&gt;</em></p>
 <p><em><strong>Contributor:</strong> Zakaria Kehel &lt;z.kehel (at) cgiar (dot) org&gt;</em></p>
 <p><em><strong>Contributor:</strong> <a href="https://github.com/apariciojohan" class="external-link">Johan Aparicio</a> &lt;j.aparicio (at) cgiar (dot) org&gt;</em></p>
-<p><em><strong>Copyright Holder:</strong> <a href="https://www.icarda.org/" class="external-link">International Center for Agricultural Research in the Dry Areas (ICARDA)</a></em></p>
+<p><em><strong>Copyright Holder:</strong> <a href="https://icarda.org/" class="external-link">International Center for Agricultural Research in the Dry Areas (ICARDA)</a></em></p>
 </blockquote>
 </div>
 <div class="section level2">
@@ -229,6 +203,8 @@
 <a href="https://breedbase.org/" class="external-link">Breedbase</a>: <code><a href="articles/breedbase_example.html">vignette("breedbase_example")</a></code>.</li>
 <li>
 <a href="https://github.com/SouthGreenPlatform/Gigwa2" class="external-link">GIGWA</a>: <code><a href="articles/gigwa_example.html">vignette("gigwa_example")</a></code>.</li>
+<li>
+<a href="https://germinateplatform.github.io/get-germinate/" class="external-link">Germinate</a>: <code><a href="articles/germinate_example.html">vignette("germinate_example")</a></code>.</li>
 </ul>
 <blockquote>
 <p><strong><em>Extra sub-systems supported:</em></strong></p>
@@ -280,7 +256,7 @@
 <p>You can switch between an ongoing QBMS connection and another server/database connection by using <code><a href="reference/get_qbms_connection.html">get_qbms_connection()</a></code> and <code><a href="reference/set_qbms_connection.html">set_qbms_connection()</a></code> functions, as shown in the following example (i.e., if there is a need to switch forth and back during the same session):</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># configure QBMS to connect the phenotypics server</span></span>
-<span><span class="fu"><a href="reference/set_qbms_config.html">set_qbms_config</a></span><span class="op">(</span><span class="st">"https://www.bms-uat-test.net/ibpworkbench/controller/auth/login"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/set_qbms_config.html">set_qbms_config</a></span><span class="op">(</span><span class="st">"https://bms.icarda.org/ibpworkbench/controller/auth/login"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># login and retrieve data from the phenotypic server</span></span>
 <span></span>
@@ -302,7 +278,7 @@
 <blockquote>
 <p>A detailed example is available in the documentation of the <code><a href="reference/get_qbms_connection.html">get_qbms_connection()</a></code> and <code><a href="reference/set_qbms_connection.html">set_qbms_connection()</a></code> functions.</p>
 </blockquote>
-<p>Also, you can find a more elegant solution developed by <a href="https://ilci.cornell.edu/our-team/francisco-agosto-perez/" class="external-link">Francisco Agosto-Perez</a> from the Breeding Informatics team within the Innovation Lab For Crop Improvement at Cornell University available here: <a href="https://github.com/agostof/BrAPI-Provider/" class="external-link">https://github.com/agostof/BrAPI-Provider/</a></p>
+<p>Also, you can find a more elegant solution developed by <a href="https://cals.cornell.edu/people/francisco-agosto-perez" class="external-link">Francisco Agosto-Perez</a> from the Breeding Informatics team within the Innovation Lab For Crop Improvement at Cornell University available here: <a href="https://github.com/agostof/BrAPI-Provider/" class="external-link">https://github.com/agostof/BrAPI-Provider/</a></p>
 </div>
 <div class="section level2">
 <h2 id="error-and-debugging">Error and Debugging<a class="anchor" aria-label="anchor" href="#error-and-debugging"></a>
@@ -316,7 +292,7 @@
 <span><span class="co"># [1] "maize"</span></span>
 <span><span class="co"># </span></span>
 <span><span class="co"># $server</span></span>
-<span><span class="co"># [1] "https://www.bms-uat-test.net"</span></span>
+<span><span class="co"># [1] "https://bms.icarda.org"</span></span>
 <span><span class="co"># </span></span>
 <span><span class="co"># $path</span></span>
 <span><span class="co"># [1] "bmsapi"</span></span>
@@ -328,7 +304,7 @@
 <span><span class="co"># [1] 120</span></span>
 <span><span class="co"># </span></span>
 <span><span class="co"># $base_url</span></span>
-<span><span class="co"># [1] "https://www.bms-uat-test.net/bmsapi"</span></span>
+<span><span class="co"># [1] "https://bms.icarda.org/bmsapi"</span></span>
 <span><span class="co"># </span></span>
 <span><span class="co"># $engine</span></span>
 <span><span class="co"># [1] "bms"</span></span>
@@ -364,11 +340,11 @@
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <ul>
-<li><p align="left">Peter Selby et al., BrAPI-an application programming interface for plant breeding applications, <em>Bioinformatics</em>, Volume 35, Issue 20, 15 October 2019, Pages 4147–4155, <a href="https://doi.org/10.1093/bioinformatics/btz190" class="external-link">https://doi.org/10.1093/bioinformatics/btz190</a></p></li>
-<li><p align="left">The Breeding API (2022, December 15). BrAPI Compatible Software list. Retrieved from <a href="https://brapi.org/compatibleSoftware" class="external-link">https://brapi.org/compatibleSoftware</a></p></li>
-<li><p align="left">Excellence in Breeding Toolbox (2023, February 1). Query Breeding Management Systems (QBMS) R package. Retrieved from <a href="https://excellenceinbreeding.org/toolbox/tools/query-breeding-management-systems-qbms-r-package" class="external-link">https://excellenceinbreeding.org/toolbox/tools/query-breeding-management-systems-qbms-r-package</a></p></li>
-<li><p align="left">CGSpace (2023, February 23). Query Breeding Management Systems (QBMS) R package. Retrieved from <a href="https://cgspace.cgiar.org/handle/10568/128828" class="external-link">https://cgspace.cgiar.org/handle/10568/128828</a></p></li>
-<li><p align="left">MELSpace (2023, February 23). Query Breeding Management Systems (QBMS) R package. Retrieved from <a href="https://repo.mel.cgiar.org/handle/20.500.11766/68139" class="external-link">https://repo.mel.cgiar.org/handle/20.500.11766/68139</a></p></li>
+<li><p>Peter Selby et al., BrAPI-an application programming interface for plant breeding applications, <em>Bioinformatics</em>, Volume 35, Issue 20, 15 October 2019, Pages 4147–4155, <a href="https://doi.org/10.1093/bioinformatics/btz190" class="external-link">https://doi.org/10.1093/bioinformatics/btz190</a></p></li>
+<li><p>The Breeding API (2022, December 15). BrAPI Compatible Software list. Retrieved from <a href="https://brapi.org/compatibleSoftware" class="external-link">https://brapi.org/compatibleSoftware</a></p></li>
+<li><p>Excellence in Breeding Toolbox (2023, February 1). Query Breeding Management Systems (QBMS) R package. Retrieved from <a href="https://excellenceinbreeding.org/toolbox/tools/query-breeding-management-systems-qbms-r-package" class="external-link">https://excellenceinbreeding.org/toolbox/tools/query-breeding-management-systems-qbms-r-package</a></p></li>
+<li><p>CGSpace (2023, February 23). Query Breeding Management Systems (QBMS) R package. Retrieved from <a href="https://cgspace.cgiar.org/handle/10568/128828" class="external-link">https://cgspace.cgiar.org/handle/10568/128828</a></p></li>
+<li><p>MELSpace (2023, February 23). Query Breeding Management Systems (QBMS) R package. Retrieved from <a href="https://repo.mel.cgiar.org/handle/20.500.11766/68139" class="external-link">https://repo.mel.cgiar.org/handle/20.500.11766/68139</a></p></li>
 </ul>
 </div>
 </div>
@@ -410,20 +386,18 @@
 </ul>
 </div>
 
-<!-- badges: start -->
-<!--[![CRAN checks](https://badges.cranchecks.info/summary/QBMS.svg)](https://cran.r-project.org/web/checks/check_results_QBMS.html)-->
-
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/web/checks/check_results_QBMS.html" class="external-link" target="_blank"><img src="https://badges.cranchecks.info/summary/QBMS.svg" alt="CRAN check results"></a></li>
-<li><a href="https://cran.r-project.org/package=QBMS" class="external-link" target="_blank"><img src="https://www.r-pkg.org/badges/version/QBMS" alt="CRAN version"></a></li>
-<li><a href="https://cran.r-project.org/package=QBMS" class="external-link" target="_blank"><img src="https://cranlogs.r-pkg.org/badges/grand-total/QBMS" alt="CRAN downloads"></a></li>
-<li><a href="https://doi.org/10.5281/zenodo.13784769" class="external-link" target="_blank"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.13784769.svg" alt="DOI"></a></li>
-<li><a href="https://www.gnu.org/licenses/gpl-3.0.en.html" class="external-link" target="_blank"><img src="https://img.shields.io/github/license/icarda/QBMS" alt="CRAN license"></a></li>
-<li><a href="https://github.com/icarda/QBMS/commits/master" class="external-link" target="_blank"><img src="https://img.shields.io/github/last-commit/icarda/QBMS" alt="GitHub commits"></a></li>
-<li><a href="https://github.com/icarda/QBMS/issues" class="external-link" target="_blank"><img src="https://img.shields.io/github/issues-raw/icarda/QBMS" alt="GitHub issues"></a></li>
-<li><a href="https://www.r-project.org/" class="external-link" target="_blank"><img src="https://img.shields.io/badge/Build%20with-%E2%99%A5%20and%20R-blue" alt="R badge"></a></li>
+<li><a href="https://cran.r-project.org/web/checks/check_results_QBMS.html" class="external-link"><img src="https://badges.cranchecks.info/summary/QBMS.svg" alt="CRAN checks"></a></li>
+<li><a href="https://cran.r-project.org/package=QBMS" class="external-link"><img src="https://www.r-pkg.org/badges/version/QBMS" alt="CRAN version"></a></li>
+<li><a href="https://cran.r-project.org/package=QBMS" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/QBMS" alt="CRAN downloads"></a></li>
+<li><a href="https://cran.r-project.org/package=QBMS" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/QBMS" alt="CRAN monthly"></a></li>
+<li><a href="https://doi.org/10.5281/zenodo.10791626" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.10791626.svg" alt="DOI"></a></li>
+<li><a href="https://www.gnu.org/licenses/gpl-3.0.en.html" class="external-link"><img src="https://img.shields.io/github/license/icarda/QBMS" alt="CRAN license"></a></li>
+<li><a href="https://github.com/icarda/QBMS/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/icarda/QBMS" alt="GitHub commits"></a></li>
+<li><a href="https://github.com/icarda/QBMS/issues" class="external-link"><img src="https://img.shields.io/github/issues-raw/icarda/QBMS" alt="GitHub issues"></a></li>
+<li><a href="https://www.r-project.org/" class="external-link"><img src="https://img.shields.io/badge/Build%20with-%E2%99%A5%20and%20R-blue" alt="R badge"></a></li>
 </ul>
 </div>
 
@@ -432,21 +406,19 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Khaled Al-Shamaa.</p>
+  <p>Developed by Khaled Al-Shamaa.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>
