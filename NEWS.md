@@ -1,14 +1,10 @@
-<!--
-# QBMS 2.0.0 _2025-06-15_
+# QBMS 2.0.0 _2025-08-02_
   * Add [Germinate](https://germinateplatform.github.io/get-germinate/) support using BrAPI v2 calls.
-  * Add [DeltaBreed](https://breedinginsight.org/learning-hub/deltabreed/) support using BrAPI v2 calls.
   * Add new generic genotyping functions including `list_variantsets()`, `set_variantset()`, `get_variantset()`, `get_variants()`, and `get_marker_map()`.
   * Add new `get_trial_pedigree()` function supports db compliance with BrAPI v2.
   * Add new generic `login()` function wraps around all engine specific `login_*` functions.
   * Fix a BreedBase login bug caused by incorrect httr2 form encoding when sending credentials.
-  * (TODO) Improve the `scan_brapi_endpoints()` function using the BrAPI /brapi/v2/serverinfo endpoint.
-  * Move special-case processing from qbms.R (before/after API calls) into the new engine.R module script.
--->
+  * Move special-case processing from qbms.R (before/after API calls) into the new internal engine.R module script.
 
 # QBMS 1.5.0 _2024-09-19_
   * Updated the core QBMS script to replace the non-CRAN [async](https://github.com/gaborcsardi/async) R package with the CRAN-standard [future](https://cran.r-project.org/package=future) and [future.apply](https://cran.r-project.org/package=future.apply) packages.

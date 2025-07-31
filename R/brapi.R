@@ -146,6 +146,8 @@ scan_brapi_endpoints <- function(programDbId = 0, trialDbId = 0, studyDbId = 0) 
     stop("No server has been defined yet! You have to set your server configurations first using the `set_qbms_config()` function")
   }
 
+  # need to improve this functionality using the BrAPI /brapi/v2/serverinfo endpoint response
+  
   call_url <- paste0(
     qbms_globals$config$base_url,
     ifelse(qbms_globals$config$crop == "", "", paste0("/", qbms_globals$config$crop)),

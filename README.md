@@ -33,6 +33,7 @@ The Breeding API ([BrAPI](https://brapi.org/)) project is an effort to enable in
 * [EBS](https://ebs.excellenceinbreeding.org/): `vignette("ebs_example")`.
 * [Breedbase](https://breedbase.org/): `vignette("breedbase_example")`.
 * [GIGWA](https://github.com/SouthGreenPlatform/Gigwa2): `vignette("gigwa_example")`.
+* [Germinate](https://germinateplatform.github.io/get-germinate/):  `vignette("germinate_example")`.
 
 > ___Extra sub-systems supported:___
 > 
