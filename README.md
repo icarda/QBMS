@@ -82,7 +82,7 @@ You can switch between an ongoing QBMS connection and another server/database co
 
 ```r
 # configure QBMS to connect the phenotypics server
-set_qbms_config("https://www.bms-uat-test.net/ibpworkbench/controller/auth/login")
+set_qbms_config("https://bms.icarda.org/ibpworkbench/controller/auth/login")
 
 # login and retrieve data from the phenotypic server
 
@@ -119,7 +119,7 @@ dump$config
 # [1] "maize"
 # 
 # $server
-# [1] "https://www.bms-uat-test.net"
+# [1] "https://bms.icarda.org"
 # 
 # $path
 # [1] "bmsapi"
@@ -131,7 +131,7 @@ dump$config
 # [1] 120
 # 
 # $base_url
-# [1] "https://www.bms-uat-test.net/bmsapi"
+# [1] "https://bms.icarda.org/bmsapi"
 # 
 # $engine
 # [1] "bms"

@@ -3,8 +3,8 @@
   * Add new generic genotyping functions including `list_variantsets()`, `set_variantset()`, `get_variantset()`, `get_variants()`, and `get_marker_map()`.
   * Add new `get_trial_pedigree()` function supports db compliance with BrAPI v2.
   * Add new generic `login()` function wraps around all engine specific `login_*` functions.
-  * Fix a BreedBase login bug caused by incorrect httr2 form encoding when sending credentials.
-  * Move special-case processing from qbms.R (before/after API calls) into the new internal engine.R module script.
+  * Fix a BreedBase login bug caused by incorrect `httr2` form encoding when sending credentials.
+  * Move special-case processing from `qbms.R` (before/after API calls) into the new internal `engine.R` module script.
 
 # QBMS 1.5.0 _2024-09-19_
   * Updated the core QBMS script to replace the non-CRAN [async](https://github.com/gaborcsardi/async) R package with the CRAN-standard [future](https://cran.r-project.org/package=future) and [future.apply](https://cran.r-project.org/package=future.apply) packages.
