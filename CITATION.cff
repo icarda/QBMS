@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this software in your work, please cite it using the metadata below."
+title: "QBMS: Query the Breeding Management System(s)"
+version: "2.0.0"
+# doi: "10.32614/CRAN.package.QBMS"
+doi: 10.5281/zenodo.10791626
+authors:
+  - family-names: Al‑Shamaa
+    given-names: Khaled
+    affiliation: ICARDA
+    orcid: https://orcid.org/0000-0002-7668-3798
+date-released: "2025-08-02"
+repository-code: https://github.com/icarda-git/QBMS
+url: https://icarda-git.github.io/QBMS/
+license: GPL‑3.0
