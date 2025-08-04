@@ -1,5 +1,5 @@
 # QBMS 2.0.0 _2025-08-02_
-  * Add [Germinate](https://germinateplatform.github.io/get-germinate/) support using BrAPI v2 calls.
+  * Add [Germinate](https://germinateplatform.github.io/get-germinate/) support using BrAPI v2 calls (requires Germinate v4.9.0 or later).
   * Add new generic genotyping functions including `list_variantsets()`, `set_variantset()`, `get_variantset()`, `get_variants()`, and `get_marker_map()`.
   * Add new `get_trial_pedigree()` function supports db compliance with BrAPI v2.
   * Add new generic `login()` function wraps around all engine specific `login_*` functions.

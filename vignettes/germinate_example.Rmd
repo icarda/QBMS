@@ -24,7 +24,7 @@ The Breeding API ([BrAPI](https://brapi.org/)) project is an effort to enable in
 # load the QBMS library
 library(QBMS)
 
-# configure your Germinate server connection
+# configure your Germinate server connection (requires Germinate v4.9.0 or later)
 set_qbms_config(url = "https://germinate.hutton.ac.uk/demo/#/home", 
                 engine = "germinate", 
                 no_auth = TRUE, 
