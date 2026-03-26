@@ -5,7 +5,7 @@
 #' @description
 #' This function allows you to extract climate variables from the 
 #' \href{https://www.climatologylab.org/terraclimate.html}{TerraClimate} dataset for specific geographic coordinates. 
-#' TerraClimate is a global dataset of monthly climate data covering the years 1958-present. The function retrieves 
+#' TerraClimate is a global dataset of monthly climate data covering the years 1950-present. The function retrieves 
 #' \href{https://www.climatologylab.org/terraclimate-variables.html}{climate variables} directly from the hosting server provided by the 
 #' \href{https://hpc.uidaho.edu/}{University of Idaho}, avoiding the need to download large raster files in netCDF format.
 #' Additionally, the function calculates \href{https://www.worldclim.org/data/bioclim.html}{bioclimatic variables} 
@@ -13,7 +13,7 @@
 #'
 #' The TerraClimate dataset is compared with \href{https://www.worldclim.org/data/worldclim21.html}{WorldClim} in several aspects:
 #' \itemize{
-#'   \item TerraClimate: 1958-present vs. WorldClim: 1970-2000
+#'   \item TerraClimate: 1950-present vs. WorldClim: 1970-2000
 #'   \item 14 climate variables vs. 7 climate variables in WorldClim
 #'   \item Spatial resolution: ~4 km (TerraClimate) vs. ~1 km (WorldClim)
 #'   \item Need to calculate bioclimatic variables (TerraClimate) vs. pre-calculated (WorldClim)
@@ -63,7 +63,7 @@
 #' 
 #' @export
 
-get_terraclimate <- function(lat, lon, from = '1958-01-01', to = '2022-12-31', clim_vars = NULL, month_mask = NULL, offline = FALSE, data_path = './data/'){
+get_terraclimate <- function(lat, lon, from = '1950-01-01', to = '2025-12-31', clim_vars = NULL, month_mask = NULL, offline = FALSE, data_path = './data/'){
   # check if the given lat coordinate values are valid
   lat <- as.numeric(lat)
   if (!all(lat >= -90 & lat <= 90)) {
@@ -105,11 +105,11 @@ get_terraclimate <- function(lat, lon, from = '1958-01-01', to = '2022-12-31', c
   
   start_month <- as.numeric(format(start_date, '%m'))
   start_year  <- as.numeric(format(start_date, '%Y'))
-  start_row   <- (start_year - 1958) * 12 + start_month
+  start_row   <- (start_year - 1950) * 12 + start_month
   
   final_month <- as.numeric(format(final_date, '%m'))
   final_year  <- as.numeric(format(final_date, '%Y'))
-  final_row   <- (final_year - 1958) * 12 + final_month
+  final_row   <- (final_year - 1950) * 12 + final_month
   
   if (offline == TRUE) {
     years_num <- final_year - start_year + 1
@@ -174,7 +174,7 @@ get_terraclimate <- function(lat, lon, from = '1958-01-01', to = '2022-12-31', c
     pb <- utils::txtProgressBar(min = 0, max = loc_num * length(clim_vars), initial = 0, style = 3) 
     
     for (var in clim_vars) {
-      aggregate_url <- paste0('http://thredds.northwestknowledge.net:8080/thredds/dodsC/agg_terraclimate_', var, '_1958_CurrentYear_GLOBE.nc')
+      aggregate_url <- paste0('http://thredds.northwestknowledge.net:8080/thredds/dodsC/agg_terraclimate_', var, '_1950_CurrentYear_GLOBE.nc')
       nc_metadata   <- RNetCDF::open.nc(aggregate_url)
       
       lat_available <- RNetCDF::var.get.nc(nc_metadata, 'lat')
@@ -207,9 +207,9 @@ get_terraclimate <- function(lat, lon, from = '1958-01-01', to = '2022-12-31', c
       colnames(clim_data[[i]]) <- clim_vars
       
       years <- obs_available / 12
-      last  <- 1958 + years - 1
+      last  <- 1950 + years - 1
       month <- rep(1:12, times = years)
-      year  <- rep(1958:last, each = 12)
+      year  <- rep(1950:last, each = 12)
       
       clim_data[[i]] <- cbind(year, month, clim_data[[i]])
       
@@ -493,7 +493,7 @@ calc_biovars <- function(data) {
 #' 
 #' @export
 
-ini_terraclimate <- function(from = '2019-09-01', to = '2022-06-30', clim_vars = c('ppt', 'tmin', 'tmax'), data_path = './data/', timeout = 300) {
+ini_terraclimate <- function(from = '2018-09-01', to = '2019-06-30', clim_vars = c('ppt', 'tmin', 'tmax'), data_path = './data/', timeout = 300) {
   options(timeout = timeout)
   
   download_url <- 'https://climate.northwestknowledge.net/TERRACLIMATE-DATA/'
