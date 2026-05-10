@@ -9,3 +9,5 @@
 ^pkgdown$
 ^\.httr-oauth$
 ^CODE_OF_CONDUCT\.md$
+^\.positai$
+^\.claude$

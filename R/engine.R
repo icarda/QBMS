@@ -23,6 +23,11 @@ engine_pre_process <- function(call_url, engine, func_name) {
 #' Khaled Al-Shamaa (\email{k.el-shamaa@cgiar.org})
 
 engine_post_process <- function(results, engine, func_name) {
+  if (engine == "breedbase" & func_name == "get_program_trials") {
+    results$data$studies_no <- sapply(results$data$studies, nrow)
+    results$data <- results$data[results$data$studies_no > 0,]
+  }
+  
   if (engine == "breedbase" & func_name == "get_study_data") {
     results$data <- results$data[-1, ]
   }
