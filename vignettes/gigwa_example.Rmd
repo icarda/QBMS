@@ -31,8 +31,8 @@ set_qbms_config("https://gigwa.southgreen.fr/gigwa/",
 
 # If login is required, then you can use your GIGWA account (interactive mode)
 # or pass your GIGWA username and password as parameters (batch mode)
-# login_gigwa()
-# login_gigwa("gigwadmin", "nimda")
+# login()
+# login("gigwadmin", "nimda")
 
 # list existing databases in the current GIGWA server
 gigwa_list_dbs()

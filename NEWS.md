@@ -1,4 +1,4 @@
-# QBMS 2.1.0 *2026-05-31*
+# QBMS 2.1.0 *2026-06-30*
 
 - Exclude nested subfolder names from BreedBase `list_trials()` returned results.
 
