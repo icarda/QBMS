@@ -5,8 +5,8 @@
 \title{Download TerraClimate netCDF Data Files to Extract their Data Offline}
 \usage{
 ini_terraclimate(
-  from = "2019-09-01",
-  to = "2022-06-30",
+  from = "2018-09-01",
+  to = "2019-06-30",
   clim_vars = c("ppt", "tmin", "tmax"),
   data_path = "./data/",
   timeout = 300

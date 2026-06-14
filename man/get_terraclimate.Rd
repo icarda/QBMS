@@ -7,8 +7,8 @@
 get_terraclimate(
   lat,
   lon,
-  from = "1958-01-01",
-  to = "2022-12-31",
+  from = "1950-01-01",
+  to = "2025-12-31",
   clim_vars = NULL,
   month_mask = NULL,
   offline = FALSE,
@@ -47,7 +47,7 @@ Each data frame is in a format ready for further analysis in R.
 \description{
 This function allows you to extract climate variables from the 
 \href{https://www.climatologylab.org/terraclimate.html}{TerraClimate} dataset for specific geographic coordinates. 
-TerraClimate is a global dataset of monthly climate data covering the years 1958-present. The function retrieves 
+TerraClimate is a global dataset of monthly climate data covering the years 1950-present. The function retrieves 
 \href{https://www.climatologylab.org/terraclimate-variables.html}{climate variables} directly from the hosting server provided by the 
 \href{https://hpc.uidaho.edu/}{University of Idaho}, avoiding the need to download large raster files in netCDF format.
 Additionally, the function calculates \href{https://www.worldclim.org/data/bioclim.html}{bioclimatic variables} 
@@ -55,7 +55,7 @@ using the \code{\link{calc_biovars}} function, derived from the \href{https://gi
 
 The TerraClimate dataset is compared with \href{https://www.worldclim.org/data/worldclim21.html}{WorldClim} in several aspects:
 \itemize{
-  \item TerraClimate: 1958-present vs. WorldClim: 1970-2000
+  \item TerraClimate: 1950-present vs. WorldClim: 1970-2000
   \item 14 climate variables vs. 7 climate variables in WorldClim
   \item Spatial resolution: ~4 km (TerraClimate) vs. ~1 km (WorldClim)
   \item Need to calculate bioclimatic variables (TerraClimate) vs. pre-calculated (WorldClim)
