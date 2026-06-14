@@ -991,7 +991,7 @@ qbms_wizard_ui <- function(id, width = "400px") {
 
 qbms_wizard_server <- function(id) {
   shiny::moduleServer(id, function(input, output, session) {
-    gadget_server(input, output, session, as_module = TRUE)
+    wizard_server(input, output, session, as_module = TRUE)
   })
 }
 
