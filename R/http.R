@@ -1,6 +1,3 @@
-# Set the future plan to enable parallel execution
-future::plan(future::multisession)
-
 #' Combine Data Frames by Row, Filling in Missing Columns
 #'
 #' @description
@@ -94,6 +91,13 @@ get_async_page <- function(full_url, nested) {
 #' Khaled Al-Shamaa (\email{k.el-shamaa@cgiar.org})
 
 get_async_pages <- function(pages, nested) {
+  old_plan <- future::plan()
+  on.exit(future::plan(old_plan), add = TRUE)
+  
+  # Set the future plan to enable parallel execution
+  workers <- min(length(pages), max(1, parallelly::availableCores() - 1))
+  future::plan(future::multisession, workers = workers)
+  
   future.apply::future_lapply(pages, function(full_url) {
     req <- httr2::request(full_url)
     req <- httr2::req_headers(req, "Accept" = "application/json")
@@ -106,7 +110,7 @@ get_async_pages <- function(pages, nested) {
     resp <- httr2::req_perform(req)
     httr2::resp_check_status(resp)
     httr2::resp_body_json(resp, simplifyVector = TRUE, flatten = !nested)
-  })
+  }, future.seed = TRUE)
 }
 
 #' Internal Function for Core BrAPI GET Calls

@@ -38,7 +38,8 @@ Imports:
     RSQLite,
     DBI,
     future,
-    future.apply
+    future.apply,
+    parallelly
 Suggests: 
     knitr,
     rmarkdown,
@@ -48,4 +49,4 @@ VignetteBuilder:
 Encoding: UTF-8
 LazyData: FALSE
 NeedsCompilation: no
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3

@@ -1,6 +1,7 @@
 # QBMS 2.1.0 *2026-06-30*
 
 - Exclude nested subfolder names from BreedBase `list_trials()` returned results.
+- Fix an issue where initialized a `future` multisession plan during package loading, causing build and `R CMD check` failures in some environments. Parallel workers are now created only when required at runtime.
 
 # QBMS 2.0.0 *2025-08-02*
 
