@@ -1,0 +1,57 @@
+---
+title: "QBMS Connection Wizard - R Markdown Example"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# remotes::install_github("icarda/QBMS")
+# library(QBMS)
+devtools::load_all(".")
+```
+
+## Using the QBMS Connection Wizard in R Markdown
+
+This document demonstrates embedding the QBMS Connection Wizard in an
+interactive R Markdown document. The document uses `runtime: shiny` to enable
+Shiny interactivity.
+
+**Important:** Since R Markdown with `runtime: shiny` runs inside a Shiny
+session, we use the **module interface** (`qbms_wizard_ui` / `qbms_wizard_server`)
+rather than `qbms_wizard()` (which would fail because `runGadget` cannot nest
+inside a running Shiny app).
+
+### Connection Wizard
+
+Complete the steps below to configure your QBMS connection:
+
+```{r wizard, echo=FALSE}
+# Embed the wizard module UI
+qbms_wizard_ui("my_wizard")
+```
+
+```{r wizard_server, context="server"}
+# Activate the wizard module server
+wizard_result <- qbms_wizard_server("my_wizard")
+
+# Render the result below once completed
+output$wizard_output <- renderPrint({
+  result <- wizard_result()
+  if (is.null(result)) {
+    cat("Complete the wizard above to configure your connection.")
+  } else {
+    cat("Connection configured!\n\n")
+    cat("Engine:", result$engine, "\n")
+    cat("URL:", result$url, "\n")
+    cat("\nSelections:\n")
+    print(result$selections)
+  }
+})
+```
+
+### Result
+
+```{r result_display, echo=FALSE}
+verbatimTextOutput("wizard_output")
+```

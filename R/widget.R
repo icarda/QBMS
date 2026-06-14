@@ -124,7 +124,7 @@ navigation_step_ui <- function(step_def, choices, ns = NULL) {
   } else {
     # Normal case: selectInput with Back and Next buttons
     shiny::tagList(
-      shiny::selectInput(inputId = ns(paste0("nav_select_", step_def$id)), label = step_def$label, choices = choices, selected = NULL),
+      shiny::selectInput(inputId = ns(paste0("nav_select_", step_def$id)), label = step_def$label, choices = choices, selected = NULL, width = "100%"),
       shiny::tags$div(
         shiny::actionButton(ns(paste0("nav_back_", step_def$id)), "Back", class = "btn-default"),
         shiny::actionButton(ns(paste0("nav_next_", step_def$id)), "Next", class = "btn-primary")
@@ -410,8 +410,8 @@ auth_credentials_ui <- function(ns = NULL) {
   if (is.null(ns)) { ns <- function(id) id }
   
   shiny::tagList(
-    shiny::textInput(ns("auth_username"), "Username", value = ""),
-    shiny::passwordInput(ns("auth_password"), "Password", value = ""),
+    shiny::textInput(ns("auth_username"), "Username", value = "", width = "100%"),
+    shiny::passwordInput(ns("auth_password"), "Password", value = "", width = "100%"),
     shiny::tags$div(
       shiny::actionButton(ns("auth_back"), "Back", class = "btn-default"),
       shiny::actionButton(ns("auth_submit"), "Login", class = "btn-primary")
@@ -437,7 +437,7 @@ auth_token_ui <- function(ns = NULL) {
   if (is.null(ns)) { ns <- function(id) id }
   
   shiny::tagList(
-    shiny::textInput(ns("auth_token"), "API Token", value = ""),
+    shiny::textInput(ns("auth_token"), "API Token", value = "", width = "100%"),
     shiny::tags$div(
       shiny::actionButton(ns("auth_token_back"), "Back", class = "btn-default"),
       shiny::actionButton(ns("auth_token_submit"), "Set Token", class = "btn-primary")
@@ -521,8 +521,8 @@ config_step_ui <- function(ns = NULL) {
   if (is.null(ns)) { ns <- function(id) id }
   
   shiny::tagList(
-    shiny::textInput(inputId = ns("config_url"), label = "Server URL", value = ""),
-    shiny::selectInput(inputId = ns("config_engine"), label = "Engine", choices = c("bms", "breedbase", "ebs", "gigwa", "germinate"), selected = "bms"),
+    shiny::textInput(inputId = ns("config_url"), label = "Server URL", value = "", width = "100%"),
+    shiny::selectInput(inputId = ns("config_engine"), label = "Engine", choices = c("bms", "breedbase", "ebs", "gigwa", "germinate"), selected = "bms", width = "100%"),
     shiny::checkboxInput(inputId = ns("config_no_auth"), label = "Skip Authentication", value = FALSE),
     shiny::actionButton(inputId = ns("config_submit"), label = "Connect", class = "btn-primary btn-block")
   )
@@ -963,7 +963,7 @@ qbms_wizard_ui <- function(id, width = "400px") {
       class = "panel panel-default",
       style = paste("width:", width, ";"),
       shiny::tags$div(class = "panel-heading", shiny::tags$h4(class = "panel-title", "QBMS Connection Wizard")),
-      shiny::tags$div(class = "panel-body", style = "min-height: 400px;", shiny::uiOutput(ns("step_content")), shiny::uiOutput(ns("step_error")))
+      shiny::tags$div(class = "panel-body", shiny::uiOutput(ns("step_content")), shiny::uiOutput(ns("step_error")))
     )
   )
 }
@@ -1033,7 +1033,7 @@ qbms_wizard <- function(viewer = NULL) {
   # Auto-select viewer if not provided
   if (is.null(viewer)) {
     viewer <- if (rstudio_is_available()) {
-      shiny::paneViewer(minHeight = 500)
+      shiny::paneViewer()
     } else {
       shiny::browserViewer()
     }
