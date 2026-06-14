@@ -39,7 +39,9 @@ Imports:
     DBI,
     future,
     future.apply,
-    parallelly
+    parallelly,
+    shiny,
+    miniUI
 Suggests: 
     knitr,
     rmarkdown,

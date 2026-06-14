@@ -1,5 +1,6 @@
 # QBMS 2.1.0 *2026-06-30*
 
+- Add a new interactive QBMS Connection Wizard for guided server configuration and dataset navigation. The wizard can be launched from the R console using `qbms_wizard()` or embedded into existing Shiny applications via `qbms_wizard_ui()` and `qbms_wizard_server()`.
 - Exclude nested subfolder names from BreedBase `list_trials()` returned results.
 - Fix an issue where initialized a `future` multisession plan during package loading, causing build and `R CMD check` failures in some environments. Parallel workers are now created only when required at runtime.
 
