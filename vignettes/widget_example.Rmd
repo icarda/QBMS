@@ -1,0 +1,231 @@
+---
+title: "Using the QBMS Connection Wizard"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using the QBMS Connection Wizard}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r config, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+## Overview
+
+The QBMS connection wizard provides an interactive way to configure a QBMS
+connection before retrieving data from a breeding-management system. It can be
+used in three common contexts:
+
+1. Directly from the R console or an R script.
+2. Embedded inside a Shiny application.
+3. Embedded inside an interactive R Markdown document that uses `runtime: shiny`.
+
+The wizard has two interfaces:
+
+- `qbms_wizard()` launches the wizard as a Shiny gadget. Use this from the R
+  console or from a regular R script.
+- `qbms_wizard_ui()` and `qbms_wizard_server()` expose the wizard as a Shiny
+  module. Use this inside Shiny applications and interactive R Markdown
+  documents.
+
+## Option 1: Using the Wizard from the R Console
+
+Use `qbms_wizard()` when working interactively from the R console or from a
+regular R script. The wizard opens in the RStudio Viewer pane when available, or
+in the default web browser. The R session waits until the user completes or
+cancels the wizard.
+
+```{r console-example}
+library(QBMS)
+
+result <- qbms_wizard()
+
+if (is.null(result)) {
+  message("Wizard was cancelled. No connection was configured.")
+} else {
+  message("Connection configured successfully.")
+  message("Engine: ", result$engine)
+  message("URL: ", result$url)
+
+  print(result$selections)
+
+  # The QBMS session is now configured, so QBMS data-retrieval
+  # functions can be called directly. The exact functions available
+  # depend on the selected engine and server.
+  study_data <- get_study_data()
+  study_info <- get_study_info()
+  germplasm <- get_germplasm_list()
+}
+```
+
+This approach is suitable for one-off interactive work, exploratory scripts, and
+manual testing of a QBMS connection. It is not suitable for Shiny applications
+or R Markdown documents running with `runtime: shiny`.
+
+## Option 2: Embedding the Wizard in a Shiny Application
+
+Inside a Shiny application, use the module interface. Add `qbms_wizard_ui()` to
+the UI and call `qbms_wizard_server()` in the server function using the same
+module ID.
+
+The server function returns a reactive expression. Before the wizard is
+completed, this reactive value is `NULL`. After completion, it contains the
+connection result.
+
+```{r shiny-app-example}
+library(shiny)
+library(QBMS)
+
+ui <- fluidPage(
+  titlePanel("QBMS Data Explorer"),
+
+  sidebarLayout(
+    sidebarPanel(
+      qbms_wizard_ui("connection_wizard")
+    ),
+
+    mainPanel(
+      h4("Connection result"),
+      verbatimTextOutput("connection_result"),
+      hr(),
+      h4("Data preview"),
+      tableOutput("data_preview")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  wizard_result <- qbms_wizard_server("connection_wizard")
+
+  output$connection_result <- renderPrint({
+    result <- wizard_result()
+
+    if (is.null(result)) {
+      cat("Complete the wizard to configure the connection.")
+    } else {
+      cat("Connection configured.\n\n")
+      cat("Engine:", result$engine, "\n")
+      cat("URL:", result$url, "\n\n")
+      cat("Selections:\n")
+      print(result$selections)
+    }
+  })
+
+  output$data_preview <- renderTable({
+    result <- wizard_result()
+    req(result)
+
+    tryCatch(
+      {
+        # Replace this placeholder with the required QBMS call, for example:
+        # head(get_study_data())
+        data.frame(
+          message = "Connection configured. Replace this with a QBMS data call.",
+          engine = result$engine,
+          url = result$url
+        )
+      },
+      error = function(e) {
+        data.frame(error = conditionMessage(e))
+      }
+    )
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+This pattern is the recommended approach when the connection wizard is part of a
+larger Shiny application. Use `shiny::req()` or an equivalent guard before
+calling QBMS data-retrieval functions that depend on the configured connection.
+
+## Option 3: Embedding the Wizard in an Interactive R Markdown Document
+
+Interactive R Markdown documents run inside a Shiny session when they use
+`runtime: shiny`. For this reason, they should also use the module interface,
+not `qbms_wizard()`.
+
+The following is a minimal R Markdown document that embeds the connection
+wizard and displays the result after completion.
+
+````{verbatim}
+---
+title: "QBMS Connection Wizard"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include = FALSE}
+library(QBMS)
+```
+
+## Configure the QBMS Connection
+
+Complete the wizard below to configure the QBMS connection.
+
+```{r wizard-ui, echo = FALSE}
+qbms_wizard_ui("connection_wizard")
+```
+
+```{r wizard-server, context = "server"}
+wizard_result <- qbms_wizard_server("connection_wizard")
+
+output$wizard_result <- renderPrint({
+  result <- wizard_result()
+
+  if (is.null(result)) {
+    cat("Complete the wizard above to configure the connection.")
+  } else {
+    cat("Connection configured.\n\n")
+    cat("Engine:", result$engine, "\n")
+    cat("URL:", result$url, "\n\n")
+    cat("Selections:\n")
+    print(result$selections)
+  }
+})
+```
+
+## Connection Result
+
+```{r wizard-output, echo = FALSE}
+verbatimTextOutput("wizard_result")
+```
+````
+
+This approach is useful when preparing interactive reports or teaching material
+where users need to configure a connection and then continue with live QBMS data
+retrieval in the same document.
+
+## Choosing the Right Interface
+
+| Context | Recommended interface | Notes |
+|---|---|---|
+| R console or regular R script | `qbms_wizard()` | Opens an interactive gadget and returns the result directly. |
+| Shiny application | `qbms_wizard_ui()` + `qbms_wizard_server()` | Use the module result as a reactive value. |
+| R Markdown with `runtime: shiny` | `qbms_wizard_ui()` + `qbms_wizard_server()` | Use a UI chunk and a server-context chunk. |
+
+> _**Notification:** Do not call `qbms_wizard()` from inside an already running Shiny session,
+because it uses `shiny::runGadget()`. Use the module interface instead._
+
+## Result Object
+
+When the wizard is completed successfully, the returned object can be used to
+inspect the selected connection settings and continue with QBMS data retrieval.
+Typical fields include:
+
+- `engine`: the selected QBMS engine;
+- `url`: the server URL; and
+- `selections`: the user selections made during the wizard.
+
+Always check for `NULL` before using the result, because `NULL` indicates that
+the wizard was cancelled or has not yet been completed.
+
+> _**Development Note:** 
+When testing the package from source, developers may load the local development
+version with `devtools::load_all(".")`. Package vignettes, however, should use
+`library(QBMS)` so that the vignette reflects how end users load the package._
