@@ -366,6 +366,7 @@ set_qbms_config <- function(url = "http://localhost",
     if (engine == "gigwa") { path = paste0(sub("^https?://[^/]+/([^/]+).*", "\\1", url), "/rest"); brapi_ver = "v2"}
     if (engine == "ebs") { path = ""; brapi_ver = "v2" }
     if (engine == "germinate") { path = sub("^https?://[^/]+/?", "", sub("(/#.*|/*$)", "/api", url)); brapi_ver = "v2"}
+    if (engine == "deltabreed") { path = sub("^https?://[^/]+/?", "", url); brapi_ver = "v2" }
   }
   
   qbms_globals$config <- list(crop = "")

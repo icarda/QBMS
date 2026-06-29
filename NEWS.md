@@ -2,6 +2,7 @@
 
 - Add a new interactive QBMS Connection Wizard for guided server configuration and dataset navigation. The wizard can be launched from the R console using `qbms_wizard()` or embedded into existing Shiny applications via `qbms_wizard_ui()` and `qbms_wizard_server()`.
 - Add a new "Connection Wizard" vignette demonstrating QBMS connection setup in console scripts, Shiny applications, and interactive R Markdown documents.
+- Add support for Breeding Insights [DeltaBreed](https://app.breedinginsight.net/) using BrAPI v2 calls (requires DeltaBreed v1.0.0 or later).
 - Exclude nested subfolder names from BreedBase `list_trials()` returned results.
 - Fix an issue where initialized a `future` multisession plan during package loading, causing build and `R CMD check` failures in some environments. Parallel workers are now created only when required at runtime.
 
