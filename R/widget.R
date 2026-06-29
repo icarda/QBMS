@@ -6,7 +6,7 @@
 #' the result selections list).
 #'
 #' Engines using each workflow:
-#' - standard: bms, breedbase, germinate (crop/program/trial/study hierarchy)
+#' - standard: bms, breedbase, deltabreed, germinate (crop/program/trial/study hierarchy)
 #' - ebs: ebs (no crop step)
 #' - gigwa: gigwa (database/project/run hierarchy)
 #'
@@ -140,14 +140,14 @@ navigation_step_ui <- function(step_def, choices, ns = NULL) {
 #' in addition to the standard url, engine, and no_auth parameters.
 #'
 #' @param engine Character string specifying the engine type. One of:
-#'   "bms", "breedbase", "ebs", "gigwa", "germinate".
+#'   "bms", "breedbase", "deltabreed", "ebs", "germinate", "gigwa".
 #'
 #' @return A named list of additional configuration parameters:
 #'   \itemize{
 #'     \item For "ebs": \code{list(brapi_ver = "v2")}
 #'     \item For "gigwa": \code{list(time_out = 300)}
 #'     \item For "germinate": \code{list(page_size = 9999)}
-#'     \item For all others ("bms", "breedbase"): \code{list()} (empty, use defaults)
+#'     \item For all others ("bms", "breedbase", "deltabreed"): \code{list()} (empty, use defaults)
 #'   }
 #'
 #' @examples
@@ -212,7 +212,7 @@ restore_connection_state <- function(backup) {
 #'
 #' Returns the workflow key for a given engine name.
 #'
-#' @param engine Character string: one of "bms", "breedbase", "ebs", "gigwa", "germinate".
+#' @param engine Character string: one of "bms", "breedbase", "deltabreed", "ebs", "germinate", "gigwa".
 #'
 #' @return Character string: "standard", "ebs", or "gigwa".
 #'
@@ -223,6 +223,7 @@ get_workflow_key <- function(engine) {
     "bms" = "standard",
     "breedbase" = "standard",
     "germinate" = "standard",
+    "deltabreed" = "standard",
     "ebs" = "ebs",
     "gigwa" = "gigwa",
     stop("Unknown engine: ", engine)
@@ -235,7 +236,7 @@ get_workflow_key <- function(engine) {
 #' Determines the type of authentication step required for a given engine and
 #' no_auth combination.
 #'
-#' @param engine Character string: one of "bms", "breedbase", "ebs", "gigwa", "germinate".
+#' @param engine Character string: one of "bms", "breedbase", "deltabreed", "ebs", "germinate", "gigwa".
 #' @param no_auth Logical. If TRUE, authentication is skipped.
 #'
 #' @return Character string: "none" if no_auth is TRUE, "token" if engine is
@@ -259,7 +260,7 @@ get_auth_step_type <- function(engine, no_auth) {
     return("none")
   }
 
-  if (engine == "ebs") {
+  if (engine %in% c("ebs", "deltabreed")) {
     return("token")
   }
 
@@ -274,7 +275,7 @@ get_auth_step_type <- function(engine, no_auth) {
 #' includes an authentication step ("auth" or "auth_token"), followed by the
 #' engine-specific navigation steps, and ends with "done".
 #'
-#' @param engine Character string: one of "bms", "breedbase", "ebs", "gigwa", "germinate".
+#' @param engine Character string: one of "bms", "breedbase", "deltabreed", "ebs", "germinate", "gigwa".
 #' @param no_auth Logical. If TRUE, the authentication step is omitted.
 #'
 #' @return Character vector of step IDs in order.
@@ -325,7 +326,7 @@ get_step_sequence <- function(engine, no_auth) {
 #' and no_auth setting.
 #'
 #' @param current_step Character string: the ID of the current step.
-#' @param engine Character string: one of "bms", "breedbase", "ebs", "gigwa", "germinate".
+#' @param engine Character string: one of "bms", "breedbase", "deltabreed", "ebs", "germinate", "gigwa".
 #' @param no_auth Logical. If TRUE, authentication is skipped.
 #'
 #' @return Character string of the next step ID, or NULL if the current step
@@ -361,7 +362,7 @@ get_next_step <- function(current_step, engine, no_auth) {
 #' engine, and no_auth setting.
 #'
 #' @param current_step Character string: the ID of the current step.
-#' @param engine Character string: one of "bms", "breedbase", "ebs", "gigwa", "germinate".
+#' @param engine Character string: one of "bms", "breedbase", "deltabreed", "ebs", "germinate", "gigwa".
 #' @param no_auth Logical. If TRUE, authentication is skipped.
 #'
 #' @return Character string of the previous step ID, or NULL if the current step
@@ -452,7 +453,7 @@ auth_token_ui <- function(ns = NULL) {
 #' setting. Uses \code{get_auth_step_type()} to determine whether credentials,
 #' token, or no authentication UI should be rendered.
 #'
-#' @param engine Character string: one of "bms", "breedbase", "ebs", "gigwa", "germinate".
+#' @param engine Character string: one of "bms", "breedbase", "deltabreed", "ebs", "germinate", "gigwa".
 #' @param no_auth Logical. If TRUE, no authentication UI is rendered.
 #'
 #' @return A \code{shiny::tagList} with the appropriate auth inputs, or NULL if
@@ -522,7 +523,8 @@ config_step_ui <- function(ns = NULL) {
   
   shiny::tagList(
     shiny::textInput(inputId = ns("config_url"), label = "Server URL", value = "", width = "100%"),
-    shiny::selectInput(inputId = ns("config_engine"), label = "Engine", choices = c("bms", "breedbase", "ebs", "gigwa", "germinate"), selected = "bms", width = "100%"),
+    shiny::selectInput(inputId = ns("config_engine"), label = "Engine", selected = "bms", width = "100%",
+                       choices = c("BMS" = "bms", "BreedBase" = "breedbase", "DeltaBreed" = "deltabreed", "EBS" = "ebs", "Germinate" = "germinate", "GIGWA" = "gigwa")),
     shiny::checkboxInput(inputId = ns("config_no_auth"), label = "Skip Authentication", value = FALSE),
     shiny::actionButton(inputId = ns("config_submit"), label = "Connect", class = "btn-primary btn-block")
   )
@@ -893,7 +895,7 @@ wizard_server <- function(input, output, session, as_module = FALSE) {
 #' workflow (standard engines get crop/program/trial/study, EBS gets
 #' program/trial/study, GIGWA gets database/project/run).
 #'
-#' @param engine Character string: one of "bms", "breedbase", "ebs", "gigwa", "germinate".
+#' @param engine Character string: one of "bms", "breedbase", "deltabreed", "ebs", "germinate", "gigwa".
 #' @param url Character string: the configured server URL.
 #' @param selections Named list of all selections made during the wizard session.
 #'
