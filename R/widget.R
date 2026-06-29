@@ -664,7 +664,11 @@ wizard_server <- function(input, output, session, as_module = FALSE) {
             normalize_options(result)
           },
           error = function(e) {
-            wizard_state$error_msg <- conditionMessage(e)
+            if (wizard_state$no_auth && grepl("401|403", e$status)) {
+              wizard_state$error_msg <- 'Authentication is required. Click Back, disable "Skip Authentication", and try again.'
+            } else {
+              wizard_state$error_msg <- conditionMessage(e)
+            }
             character(0)
           }
         )
@@ -682,7 +686,7 @@ wizard_server <- function(input, output, session, as_module = FALSE) {
   
   output$step_error <- shiny::renderUI({
     if (!is.null(wizard_state$error_msg)) {
-      shiny::tags$div(class = "alert alert-danger", wizard_state$error_msg)
+      shiny::tags$div(class = "alert alert-danger", style = "margin-top: 10px;", wizard_state$error_msg)
     }
   })
   
@@ -745,7 +749,11 @@ wizard_server <- function(input, output, session, as_module = FALSE) {
     # Call login() with tryCatch
     result <- tryCatch(
       { login(username, password); TRUE },
-      error = function(e) { wizard_state$error_msg <- conditionMessage(e); FALSE }
+      error = function(e) { 
+        # wizard_state$error_msg <- conditionMessage(e)
+        wizard_state$error_msg <- "Invalid username or password. Please try again."
+        FALSE
+      }
     )
     
     if (isTRUE(result)) {
