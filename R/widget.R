@@ -706,6 +706,16 @@ wizard_server <- function(input, output, session, as_module = FALSE) {
       return()
     }
     
+    # Attempt a HEAD request to the URL to check reachability
+    reachable <- tryCatch(
+      { httr2::request(url) |> httr2::req_method("HEAD") |> httr2::req_perform(); TRUE },
+      error = function(e) FALSE)
+    
+    if (!reachable) {
+      wizard_state$error_msg <- "Server URL is not valid or cannot be reached."
+      return()
+    }
+    
     # Get engine-specific config parameters
     extra_params <- get_engine_config_params(engine)
     
