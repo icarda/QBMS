@@ -709,7 +709,7 @@ wizard_server <- function(input, output, session, as_module = FALSE) {
     # Attempt a HEAD request to the URL to check reachability
     reachable <- tryCatch(
       { httr2::request(url) |> httr2::req_method("HEAD") |> httr2::req_perform(); TRUE },
-      error = function(e) FALSE)
+      error = function(e) inherits(e, "httr2_http_401"))
     
     if (!reachable) {
       wizard_state$error_msg <- "Server URL is not valid or cannot be reached."
