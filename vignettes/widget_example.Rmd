@@ -1,8 +1,8 @@
 ---
-title: "Using the QBMS Connection Wizard"
+title: "Connection Wizard"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using the QBMS Connection Wizard}
+  %\VignetteIndexEntry{Connection Wizard}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -58,8 +58,6 @@ if (is.null(result)) {
   # functions can be called directly. The exact functions available
   # depend on the selected engine and server.
   study_data <- get_study_data()
-  study_info <- get_study_info()
-  germplasm <- get_germplasm_list()
 }
 ```
 
