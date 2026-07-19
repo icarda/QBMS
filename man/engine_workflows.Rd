@@ -18,7 +18,7 @@ the result selections list).
 }
 \details{
 Engines using each workflow:
-- standard: bms, breedbase, germinate (crop/program/trial/study hierarchy)
+- standard: bms, breedbase, deltabreed, germinate (crop/program/trial/study hierarchy)
 - ebs: ebs (no crop step)
 - gigwa: gigwa (database/project/run hierarchy)
 }

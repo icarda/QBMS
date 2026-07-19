@@ -7,7 +7,7 @@
 get_step_sequence(engine, no_auth)
 }
 \arguments{
-\item{engine}{Character string: one of "bms", "breedbase", "ebs", "gigwa", "germinate".}
+\item{engine}{Character string: one of "bms", "breedbase", "deltabreed", "ebs", "germinate", "gigwa".}
 
 \item{no_auth}{Logical. If TRUE, the authentication step is omitted.}
 }

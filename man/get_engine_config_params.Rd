@@ -8,7 +8,7 @@ get_engine_config_params(engine)
 }
 \arguments{
 \item{engine}{Character string specifying the engine type. One of:
-"bms", "breedbase", "ebs", "gigwa", "germinate".}
+"bms", "breedbase", "deltabreed", "ebs", "germinate", "gigwa".}
 }
 \value{
 A named list of additional configuration parameters:
@@ -16,7 +16,7 @@ A named list of additional configuration parameters:
     \item For "ebs": \code{list(brapi_ver = "v2")}
     \item For "gigwa": \code{list(time_out = 300)}
     \item For "germinate": \code{list(page_size = 9999)}
-    \item For all others ("bms", "breedbase"): \code{list()} (empty, use defaults)
+    \item For all others ("bms", "breedbase", "deltabreed"): \code{list()} (empty, use defaults)
   }
 }
 \description{

@@ -7,7 +7,7 @@
 build_wizard_result(engine, url, selections)
 }
 \arguments{
-\item{engine}{Character string: one of "bms", "breedbase", "ebs", "gigwa", "germinate".}
+\item{engine}{Character string: one of "bms", "breedbase", "deltabreed", "ebs", "germinate", "gigwa".}
 
 \item{url}{Character string: the configured server URL.}
 

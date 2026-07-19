@@ -7,7 +7,7 @@
 get_auth_step_type(engine, no_auth)
 }
 \arguments{
-\item{engine}{Character string: one of "bms", "breedbase", "ebs", "gigwa", "germinate".}
+\item{engine}{Character string: one of "bms", "breedbase", "deltabreed", "ebs", "germinate", "gigwa".}
 
 \item{no_auth}{Logical. If TRUE, authentication is skipped.}
 }

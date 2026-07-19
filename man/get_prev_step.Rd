@@ -9,7 +9,7 @@ get_prev_step(current_step, engine, no_auth)
 \arguments{
 \item{current_step}{Character string: the ID of the current step.}
 
-\item{engine}{Character string: one of "bms", "breedbase", "ebs", "gigwa", "germinate".}
+\item{engine}{Character string: one of "bms", "breedbase", "deltabreed", "ebs", "germinate", "gigwa".}
 
 \item{no_auth}{Logical. If TRUE, authentication is skipped.}
 }

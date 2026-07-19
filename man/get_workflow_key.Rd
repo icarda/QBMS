@@ -7,7 +7,7 @@
 get_workflow_key(engine)
 }
 \arguments{
-\item{engine}{Character string: one of "bms", "breedbase", "ebs", "gigwa", "germinate".}
+\item{engine}{Character string: one of "bms", "breedbase", "deltabreed", "ebs", "germinate", "gigwa".}
 }
 \value{
 Character string: "standard", "ebs", or "gigwa".
