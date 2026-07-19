@@ -1,0 +1,91 @@
+---
+title: "DeltaBreed Example"
+author: "Khaled Al-Shamaa"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{DeltaBreed Example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## QBMS
+This R package assists breeders in linking data systems with their analytic pipelines, a crucial step in digitizing breeding processes. It supports querying and retrieving phenotypic and genotypic data from systems like [EBS](https://ebs.excellenceinbreeding.org/), [BMS](https://bmspro.io/), [BreedBase](https://breedbase.org), and [GIGWA](https://github.com/SouthGreenPlatform/Gigwa2) (using [BrAPI](https://brapi.org/) calls). Extra helper functions support environmental data sources, including [TerraClimate](https://www.climatologylab.org/terraclimate.html) and FAO [HWSDv2](https://gaez.fao.org/pages/hwsd) soil database.
+
+## DeltaBreed
+[DeltaBreed](https://breedinginsight.org/deltabreed/) is an open source data management software for specialty crop and animal breeders. It is developed by [Breeding Insight](https://breedinginsight.org/) with funding from the U.S. Department of Agriculture (USDA) [Agricultural Research Service (ARS)](https://www.ars.usda.gov/) through [Cornell University](https://www.cornell.edu/).
+
+The easiest way to try DeltaBreed is to use their [public sandbox](https://sandbox.breedinginsight.net/). The User Manual, which describes how to use DeltaBreed's features, may be viewed [here](https://breedinginsight.org/docs-category/deltabreed).
+
+The easiest way to test the QBMS integration with DeltaBreed is to use their [public sandbox](https://sandbox.breedinginsight.net/). The DeltaBreed user documentation is available
+[here](https://breedinginsight.org/docs-category/deltabreed).
+
+> **Please note:**
+>
+> - All submitted data are public; do not submit private data on the public sandbox.
+> - The public sandbox database is routinely reset and submitted data may be removed without notice.
+> - Access tokens should be treated as credentials and should not be committed to source code or shared publicly.
+
+**Accessing DeltaBreed Sandbox:**
+
+Open the [DeltaBreed public sandbox](https://sandbox.breedinginsight.net/). The sandbox landing page displays the guest account credentials that can be used to explore the available demonstration data.
+
+Click "**LOG IN**" beside the guest account information. DeltaBreed will redirect you to the ORCID authentication page. Then, click "**SIGN IN with ORCID**" and use the sandbox guest credentials shown on the DeltaBreed landing page. After authentication, you will be redirected back to DeltaBreed and logged into the "**Public Sandbox**" breeding program. To obtain the required BrAPI connection information:
+
+1. Select "**BrAPI**" from the sidebar menu.
+2. Open the "**BrAPI Base URL**" tab.
+3. Copy the displayed BrAPI base URL.
+4. Click "**Generate Access Token**".
+5. Copy the generated token for use in the current QBMS session.
+
+## BrAPI
+The Breeding API ([BrAPI](https://brapi.org/)) project is an effort to enable interoperability among plant breeding databases. BrAPI is a standardized RESTful web service API specification for communicating plant breeding data. This community driven standard is free to be used by anyone interested in plant breeding data management.
+
+## _Example_
+```r
+# load the QBMS library
+library(QBMS)
+
+# DeltaBreed BrAPI Base URL
+brapi_base_url <- 'https://sandbox.breedinginsight.net/v1/programs/ef0a5341-53d1-41b3-aeae-90692f9d563d'
+
+# config the EBS connection
+set_qbms_config(url = brapi_base_url, engine = 'deltabreed')
+
+# set your generated access token manually
+set_token(readline('token:'))
+
+# get the list of crops
+list_crops()
+
+# list all breeding programs in the selected crop
+list_programs()
+
+# select a breeding program by name
+set_program("Public Sandbox")
+
+# list all studies/trials in the selected program
+list_trials()
+
+# select a specific study/trial by name
+set_trial("2025 Disease Screen ABCD")
+
+# list all environments/locations information in the selected study/trial
+list_studies()
+
+# select a specific environment/location by name
+set_study("Win23")
+
+# retrieve general information, data, and germplasm list 
+# of the selected environment/location
+info <- get_study_info()
+data <- get_study_data()
+# germplasm <- get_germplasm_list()
+
+# get observation variable ontology in the selected study/trial
+ontology <- get_trial_obs_ontology()
+
+# retrieve multi-environment trial data of the selected study/trial
+MET <- get_trial_data()
+
+```
