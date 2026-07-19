@@ -89,3 +89,21 @@ ontology <- get_trial_obs_ontology()
 MET <- get_trial_data()
 
 ```
+
+## Using the Connection Wizard
+
+Alternatively, the DeltaBreed connection can be configured interactively using the Connection Wizard:
+
+```r
+library(QBMS)
+
+result <- qbms_wizard()
+```
+
+In the wizard, select **DeltaBreed**, enter the BrAPI base URL, and paste the access token generated from the DeltaBreed **BrAPI** page. After selecting the required program, trial, and study, the QBMS session is ready for data retrieval:
+
+```r
+study_data <- get_study_data()
+```
+
+For details on using the wizard from the R console, Shiny applications, or interactive R Markdown documents, see the **Connection Wizard** vignette/article.
