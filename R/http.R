@@ -91,12 +91,10 @@ get_async_page <- function(full_url, nested) {
 #' Khaled Al-Shamaa (\email{k.el-shamaa@cgiar.org})
 
 get_async_pages <- function(pages, nested) {
-  old_plan <- future::plan()
-  on.exit(future::plan(old_plan), add = TRUE)
-  
+
   # Set the future plan to enable parallel execution
   workers <- min(length(pages), max(1, parallelly::availableCores() - 1))
-  future::plan(future::multisession, workers = workers)
+  with(future::plan(future::multisession, workers = workers), local = TRUE)
   
   future.apply::future_lapply(pages, function(full_url) {
     req <- httr2::request(full_url)
@@ -112,6 +110,7 @@ get_async_pages <- function(pages, nested) {
     httr2::resp_body_json(resp, simplifyVector = TRUE, flatten = !nested)
   }, future.seed = TRUE)
 }
+
 
 #' Internal Function for Core BrAPI GET Calls
 #'
