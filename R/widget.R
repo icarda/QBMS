@@ -716,6 +716,11 @@ wizard_server <- function(input, output, session, as_module = FALSE) {
       return()
     }
     
+    if (engine == "ebs") {
+      # For EBS, refer to the API endpoint format
+      url <- sub("https://cb-", "https://cbbrapi-", url, fixed = TRUE)
+    }
+    
     # Get engine-specific config parameters
     extra_params <- get_engine_config_params(engine)
     
