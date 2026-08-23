@@ -36,22 +36,48 @@ The Breeding API ([BrAPI](https://brapi.org/)) project is an effort to enable in
 > JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties. [https://jwt.io/](https://jwt.io/) allows you to decode, verify and generate JWT.
 
 ## _Example_
+
+### Connect and authenticate to EBS
+
+Before querying data from EBS, configure QBMS with the required BrAPI endpoint URL (e.g., <https://cbbrapi-wheat.ebs.cimmyt.org>) and authenticate the user.
+
+QBMS supports two authentication approaches. Most users can sign in through the EBS BrAPI login page using their organization credentials, copy the returned access token, and pass it to QBMS with `set_token()`. Developers with an OAuth 2.0 client ID and client secret can instead authenticate using `login_oauth2()`.
+
+For the token-based approach, open the BrAPI login page for the corresponding EBS instance (e.g., <https://cbbrapi-wheat.ebs.cimmyt.org/brapi/v2/auth/login>). After successful authentication, a JSON response is returned. Copy only the value of the `"token"` field; do not copy the `"refreshToken"` or any surrounding JSON text.
+
+For security, avoid hard-coding access tokens in shared scripts. The `readline()` approach below allows the token to be entered interactively in the R console.
+
 ```r
 # load the QBMS library
 library(QBMS)
 
 # config the EBS connection
-set_qbms_config(url = 'https://cbbrapi-qa.ebsproject.org', engine = 'ebs', brapi_ver = 'v2')
+set_qbms_config(url = 'https://cbbrapi-wheat.ebs.cimmyt.org', engine = 'ebs', brapi_ver = 'v2')
 
-# set your access token manually
-# set_token(readline('token:'))
+# ---------------------------------------------------------------------------
+# Authentication option 1: provide an EBS access token manually
+# ---------------------------------------------------------------------------
 
-# EBS OAuth 2.0 configuration
-login_oauth2(authorize_url = 'https://auth-dev.ebsproject.org/oauth2/authorize', 
-             access_url    = 'https://auth-dev.ebsproject.org/oauth2/token', 
+# Obtain the token from the authentication endpoint of your EBS instance.
+# After signing in, copy ONLY the value of the "token" field from the returned
+# JSON response, then run the command below and paste the token when prompted.
+set_token(readline('token:'))
+
+# ---------------------------------------------------------------------------
+# Authentication option 2: use the EBS OAuth 2.0 workflow
+# ---------------------------------------------------------------------------
+
+login_oauth2(authorize_url = 'https://auth.ebsproject.org/oauth2/authorize', 
+             access_url    = 'https://auth.ebsproject.org/oauth2/token', 
              client_id     = '<your client id>', 
              client_secret = '<your client secret>')
+```
 
+### Query data
+
+After the EBS connection has been configured and authentication has been completed using either option above, the usual QBMS workflow can be used to select a breeding program, trial, and study and then retrieve the required data.
+
+```r
 # list all breeding programs
 list_programs()
 
