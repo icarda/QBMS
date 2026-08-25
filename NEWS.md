@@ -4,6 +4,7 @@
 - Add support for Breeding Insight's [DeltaBreed](https://sandbox.breedinginsight.net/) using BrAPI v2 calls (requires DeltaBreed v1.0.0 or later), together with a new vignette demonstrating how to connect to DeltaBreed and retrieve breeding data through QBMS.
 - Exclude nested subfolder names from BreedBase `list_trials()` results.
 - Improve `future` backend handling based on guidance from Henrik Bengtsson in [#20](https://github.com/icarda/QBMS/issues/20). The `multisession` plan is now set locally only when required at runtime, without permanently changing the user's future plan. Thanks to [Henrik](https://github.com/HenrikBengtsson) for reporting the issue and advising on the appropriate implementation.
+- Improve the EBS vignette with clearer guidance on BrAPI endpoint configuration and authentication using either an access token or OAuth 2.0 credentials.
 
 # QBMS 2.0.0 *2025-08-02*
 
