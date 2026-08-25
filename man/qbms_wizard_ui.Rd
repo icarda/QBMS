@@ -10,7 +10,7 @@ qbms_wizard_ui(id, width = "400px")
 \item{id}{Character string. The module namespace ID.}
 
 \item{width}{Character string specifying the panel width as a valid CSS
-value (e.g., "400px" or "100%"). Defaults to "400px".}
+value (e.g., "400px" or "100\%"). Defaults to "400px".}
 }
 \value{
 A Shiny UI element (tagList) containing the wizard interface.

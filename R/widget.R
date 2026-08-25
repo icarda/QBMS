@@ -487,16 +487,17 @@ auth_step_ui <- function(engine, no_auth) {
 #' Gadget UI Definition
 #'
 #' Creates the main miniUI page layout for the Connection Wizard gadget.
-#' Uses \code{miniUI::miniPage()} with a title bar (Done/Cancel), and a content panel
-#' containing dynamic step rendering and error display areas.
+#' Includes a gadget title bar (Done/Cancel) and a content panel containing
+#' dynamic step rendering and error display areas.
 #'
-#' @return A \code{miniUI::miniPage} UI definition suitable for use with \code{shiny::runGadget()}.
+#' @return A Shiny UI definition containing the gadget interface, suitable for
+#'   use with \code{shiny::runGadget()}.
 #'
+#' @importFrom miniUI miniPage gadgetTitleBar miniContentPanel
 #' @keywords internal
-
-gadget_ui <- miniUI::miniPage(
-  miniUI::gadgetTitleBar("QBMS Connection Wizard"),
-  miniUI::miniContentPanel(
+gadget_ui <- miniPage(
+  gadgetTitleBar("QBMS Connection Wizard"),
+  miniContentPanel(
     padding = 10,
     shiny::uiOutput("step_content"),
     shiny::uiOutput("step_error")
@@ -967,11 +968,9 @@ build_wizard_result <- function(engine, url, selections) {
 #'
 #' @param id Character string. The module namespace ID.
 #' @param width Character string specifying the panel width as a valid CSS
-#'   value (e.g., "400px" or "100%"). Defaults to "400px".
+#'   value (e.g., "400px" or "100\%"). Defaults to "400px".
 #'
 #' @return A Shiny UI element (tagList) containing the wizard interface.
-#'
-#' @export
 #'
 #' @examples
 #' if (interactive()) {

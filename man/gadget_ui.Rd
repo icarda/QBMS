@@ -11,11 +11,12 @@ An object of class \code{shiny.tag.list} (inherits from \code{list}) of length 1
 gadget_ui
 }
 \value{
-A \code{miniUI::miniPage} UI definition suitable for use with \code{shiny::runGadget()}.
+A Shiny UI definition containing the gadget interface, suitable for
+  use with \code{shiny::runGadget()}.
 }
 \description{
 Creates the main miniUI page layout for the Connection Wizard gadget.
-Uses \code{miniUI::miniPage()} with a title bar (Done/Cancel), and a content panel
-containing dynamic step rendering and error display areas.
+Includes a gadget title bar (Done/Cancel) and a content panel containing
+dynamic step rendering and error display areas.
 }
 \keyword{internal}

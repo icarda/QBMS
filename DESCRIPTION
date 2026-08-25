@@ -1,8 +1,8 @@
 Type: Package
 Package: QBMS
 Title: Query the Breeding Management System(s)
-Version: 2.5.0
-Date: 2025-08-02
+Version: 3.0.0
+Date: 2025-08-26
 Authors@R: c(
     person("Khaled", "Al-Shamaa", , "k.el-shamaa@cgiar.org", role = c("aut", "cre")),
     person("Mariano Omar", "Crimi", , "m.crimi@cgiar.org", role = "ctb"),
@@ -41,7 +41,8 @@ Imports:
     future.apply,
     parallelly,
     shiny,
-    miniUI
+    miniUI,
+    rstudioapi
 Suggests: 
     knitr,
     rmarkdown,
