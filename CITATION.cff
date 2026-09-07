@@ -1,26 +1,51 @@
 cff-version: 1.2.0
-message: "If you use this software in your work, please cite it using the metadata below."
+message: "If you use QBMS in your research, please cite it using the metadata below."
+
 title: "QBMS: Query the Breeding Management System(s)"
-version: "2.0.0"
-# doi: "10.32614/CRAN.package.QBMS"
-doi: 10.5281/zenodo.10791626
+type: software
+
 authors:
-  - family-names: Al‑Shamaa
-    given-names: Khaled
-    affiliation: ICARDA
-    orcid: https://orcid.org/0000-0002-7668-3798
-  - family-names: Crimi
-    given-names: Mariano Omar
-    affiliation: IBP
-  - family-names: Kehel
-    given-names: Zakaria
-    affiliation: ICARDA
-    orcid: https://orcid.org/0000-0002-1625-043X
-  - family-names: Aparicio
-    given-names: Johan
-    affiliation: CIAT
-    orcid: https://orcid.org/0000-0003-3580-5354
-date-released: "2025-08-02"
-repository-code: https://github.com/icarda-git/QBMS
-url: https://icarda-git.github.io/QBMS/
-license: GPL‑3.0
+  - family-names: "Al-Shamaa"
+    given-names: "Khaled"
+    email: "k.el-shamaa@cgiar.org"
+  - family-names: "Crimi"
+    given-names: "Mariano Omar"
+    email: "m.crimi@cgiar.org"
+  - family-names: "Kehel"
+    given-names: "Zakaria"
+    email: "z.kehel@cgiar.org"
+  - family-names: "Aparicio"
+    given-names: "Johan"
+    email: "j.aparicio@cgiar.org"
+
+version: "3.0.0"
+doi: 10.32614/CRAN.package.QBMS
+date-released: "2025-09-14"
+
+url: "https://icarda.github.io/QBMS/"
+repository-code: "https://github.com/icarda/QBMS"
+
+license: "GPL-3.0-or-later"
+
+abstract: >-
+  QBMS is an R package that assists breeders in linking breeding data
+  management systems with analytical pipelines. It supports querying and
+  retrieving phenotypic and genotypic data from systems including EBS, BMS,
+  BreedBase, Germinate, DeltaBreed, and GIGWA through BrAPI. It also 
+  provides helper functions for accessing environmental data sources 
+  including TerraClimate and the FAO HWSD v2 soil database.
+
+keywords:
+  - R
+  - plant breeding
+  - breeding management systems
+  - BrAPI
+  - phenotypic data
+  - genotypic data
+  - breeding informatics
+  - EBS
+  - BMS
+  - BreedBase
+  - Germinate
+  - DeltaBreed
+  - GIGWA

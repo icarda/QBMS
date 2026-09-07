@@ -2,7 +2,7 @@ Type: Package
 Package: QBMS
 Title: Query the Breeding Management System(s)
 Version: 3.0.0
-Date: 2025-08-26
+Date: 2026-09-14
 Authors@R: c(
     person("Khaled", "Al-Shamaa", , "k.el-shamaa@cgiar.org", role = c("aut", "cre")),
     person("Mariano Omar", "Crimi", , "m.crimi@cgiar.org", role = "ctb"),
@@ -17,8 +17,9 @@ Description: This R package assists breeders in linking data systems with their 
     a crucial step in digitizing breeding processes. It supports querying and retrieving 
     phenotypic and genotypic data from systems like 'EBS' <https://ebs.excellenceinbreeding.org/>, 
     'BMS' <https://bmspro.io>, 'BreedBase' <https://breedbase.org>,
-    'GIGWA' <https://github.com/SouthGreenPlatform/Gigwa2> (using 'BrAPI' <https://brapi.org> calls),
-    and 'Germinate' <https://germinateplatform.github.io/get-germinate/>. 
+    'Germinate' <https://germinateplatform.github.io/get-germinate/>,
+    'DeltaBreed' <https://sandbox.breedinginsight.net>,
+    and 'GIGWA' <https://github.com/SouthGreenPlatform/Gigwa2> (using 'BrAPI' <https://brapi.org> calls).
     Extra helper functions support environmental data sources, including 
     'TerraClimate' <https://www.climatologylab.org/terraclimate.html> and 'FAO' 
     'HWSDv2' <https://gaez.fao.org/pages/hwsd> soil database. 

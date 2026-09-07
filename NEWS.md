@@ -1,4 +1,4 @@
-# QBMS 3.0.0 *2026-08-25*
+# QBMS 3.0.0 *2026-09-14*
 
 - Add a new interactive QBMS Connection Wizard for guided server configuration and dataset navigation. It can be launched from the R console using `qbms_wizard()` or embedded in Shiny applications using `qbms_wizard_ui()` and `qbms_wizard_server()`. A new "Connection Wizard" vignette demonstrates its use in console scripts, Shiny applications, and interactive R Markdown documents.
 - Add support for Breeding Insight's [DeltaBreed](https://sandbox.breedinginsight.net/) using BrAPI v2 calls (requires DeltaBreed v1.0.0 or later), together with a new vignette demonstrating how to connect to DeltaBreed and retrieve breeding data through QBMS.
