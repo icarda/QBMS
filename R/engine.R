@@ -64,6 +64,28 @@ engine_post_process <- function(results, engine, func_name) {
     results$data$genotypeValue <- gsub("^(.+)null(.+)$", "\\1/\\2", results$data$genotypeValue)
   }
 
+  if (engine == "germinate" & func_name == "get_study_data") {
+    # results <- result_data
+    id_cols <- names(results$data)[seq_along(results$headerRow)]
+    trait_cols <- setdiff(names(results$data), id_cols)
+    
+    converted    <- suppressWarnings(lapply(results$data[trait_cols], function(x) as.numeric(as.character(x))))
+    numeric_cols <- trait_cols[vapply(converted, function(x) any(!is.na(x)), logical(1))]
+    other_cols   <- setdiff(trait_cols, numeric_cols)
+    
+    results$data[numeric_cols] <- converted[numeric_cols]
+    
+    # results$data <- results$data %>%
+    #   group_by(across(all_of(id_cols))) %>%
+    #   summarise(across(all_of(trait_cols), ~ { if (all(is.na(.x))) NA_real_ else mean(.x, na.rm = TRUE) }), .groups = "drop")
+
+    results$data <- results$data %>%
+      group_by(across(all_of(id_cols))) %>%
+      summarise(across(all_of(numeric_cols), ~ { if (all(is.na(.x))) NA_real_ else mean(.x, na.rm = TRUE) }),
+                across(all_of(other_cols), ~ { .x[which(.x != "")[1L]] }), .groups = "drop") %>%
+      select(all_of(c(id_cols, trait_cols)))
+  }
+  
   results
 }
 
